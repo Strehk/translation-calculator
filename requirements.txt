@@ -1,0 +1,13 @@
+altgraph==0.17.4
+customtkinter==5.2.2
+darkdetect==0.8.0
+inquirerpy==0.3.4
+macholib==1.16.3
+modulegraph==0.19.6
+packaging==24.2
+pfzy==0.3.4
+prompt_toolkit==3.0.48
+pyinstaller==6.11.1
+pyinstaller-hooks-contrib==2024.10
+setuptools==75.6.0
+wcwidth==0.2.13

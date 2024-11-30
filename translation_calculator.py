@@ -2,18 +2,7 @@ import os
 import re
 import time
 
-def get_base_values():
-    with open("base_values.txt", "r") as f:
-        lines = f.readlines()
-        n = int(re.search("\d\d", lines[0]).group(0))
-        p = float(re.search("(\d+)([.]\d\d)", lines[1]).group(0))
-        s = float(re.search("(\d+)([.]\d\d)", lines[2]).group(0))
-        std = int(re.search("\d\d", lines[3]).group(0))
-
-    return n, p, s, std
-
-
-STANDARD_LINE, PRICE_PER_LINE, SURCHARGE, STANDARD_PAGE = get_base_values()
+from base_values import STANDARD_LINE, PRICE_PER_LINE, SURCHARGE, STANDARD_PAGE
 
 
 def align_right(text, length):
