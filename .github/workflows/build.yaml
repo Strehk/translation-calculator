@@ -6,11 +6,22 @@ on:
 
 jobs:
   pyinstaller-build:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        include:
+          - os: ubuntu-latest
+            artifact_name: 'translation-calculator-linux'
+          - os: macos-latest
+            artifact_name: 'translation-calculator-macos'
+          - os: windows-latest
+            artifact_name: 'translation-calculator-windows'
+    
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Required to fetch tags
+          fetch-depth: 0
           
       - name: Set version file
         run: |
@@ -22,4 +33,14 @@ jobs:
           python_ver: '3.12'
           spec: 'main.spec'
           requirements: 'requirements.txt'
-          upload_exe_with_name: 'Translation Calculator'
+          upload_exe_with_name: ${{ matrix.artifact_name }}
+          
+      - name: Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/**/*.exe
+            dist/**/*.app
+            dist/**/translation-calculator-linux
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
