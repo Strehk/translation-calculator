@@ -21,7 +21,7 @@ Usage:
     calculator.run()
 """
 
-__version__ = "1.0.0"
+from .version import __version__
 __author__ = "Tade Strehk"
 
 from .main import TranslationCalculator
