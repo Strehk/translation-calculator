@@ -35,10 +35,14 @@ jobs:
           requirements: "requirements.txt"
           upload_exe_with_name: ${{ matrix.artifact_name }}
 
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+  add-executables-to-release:
+    needs: pyinstaller-build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Upload Executables
+      - name: Upload Executables
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: dist/*
-          asset_name: ${{ matrix.artifact_name }}
-          asset_content_type: application/octet-stream
+            files: |
+                ${{ needs.pyinstaller-build.outputs }}/*
