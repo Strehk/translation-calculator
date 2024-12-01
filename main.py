@@ -114,6 +114,7 @@ class TranslationCalculator:
             f"Characters:       {characters} translated characters (including spaces)"
         )
         prints.append(f"Standard line:    {self.base_values.standard_line} characters")
+        prints.append(f"Standard page:    {self.base_values.standard_page} standard lines")
         prints.append(
             f"Base price:       {self.base_values.base_price_per_line:.2f} € per standard line"
         )
