@@ -37,7 +37,7 @@ jobs:
 
       - name: Zip Executable
         run: |
-          zip -r dist/${{ matrix.artifact_name }}.zip dist/${{ matrix.artifact_name }}
+          zip -r dist/${{ matrix.artifact_name }}.zip dist/*
 
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
