@@ -2,10 +2,10 @@
 import os
 
 a = Analysis(
-    ['main.py'],
-    pathex=['.'],
+    ["main.py"],
+    pathex=["."],
     binaries=[],
-    datas=[('base_values.py', '.')],
+    datas=[("base_values.py", "."), (".env", ".")],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -15,7 +15,7 @@ a = Analysis(
     optimize=0,
 )
 
-version = os.getenv('APP_VERSION', '0.0.0')
+version = os.getenv("APP_VERSION", "0.0.0")
 
 pyz = PYZ(a.pure)
 
@@ -24,7 +24,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name='Translation Calculator',
+    name="Translation Calculator",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -36,11 +36,11 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     version_info={
-        'FileVersion': version,
-        'ProductVersion': version,
-        'FileDescription': 'Translation Calculator',
-        'CompanyName': 'Tade Strehk',
-        'ProductName': 'Translation Calculator',
+        "FileVersion": version,
+        "ProductVersion": version,
+        "FileDescription": "Translation Calculator",
+        "CompanyName": "Tade Strehk",
+        "ProductName": "Translation Calculator",
     },
 )
 
@@ -52,12 +52,12 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name='Translation Calculator'
+    name="Translation Calculator",
 )
 
 app = BUNDLE(
     coll,
-    name='Translation-Calculator.app',
+    name="Translation-Calculator.app",
     icon="img/icon.icns",
-    bundle_identifier=None
+    bundle_identifier=None,
 )
