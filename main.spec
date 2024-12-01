@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-
+import os
 
 a = Analysis(
     ['main.py'],
@@ -14,6 +14,9 @@ a = Analysis(
     noarchive=False,
     optimize=0,
 )
+
+version = os.getenv('APP_VERSION', '0.0.0')
+
 pyz = PYZ(a.pure)
 
 exe = EXE(
@@ -32,6 +35,13 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
+    version_info={
+        'FileVersion': version,
+        'ProductVersion': version,
+        'FileDescription': 'Translation Calculator',
+        'CompanyName': 'Tade Strehk',
+        'ProductName': 'Translation Calculator',
+    },
 )
 
 coll = COLLECT(

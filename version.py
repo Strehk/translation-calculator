@@ -1,8 +1,13 @@
-
+import os
 import subprocess
 from pathlib import Path
 
 def get_version():
+    # Check environment variable first (set during build)
+    env_version = os.getenv('APP_VERSION')
+    if env_version:
+        return env_version
+
     try:
         # Get version from git tag
         version = subprocess.check_output(['git', 'describe', '--tags']).decode().strip()

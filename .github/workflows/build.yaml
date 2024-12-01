@@ -23,12 +23,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get version from tag
+        id: get_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
       - name: Set version file
         run: |
           git describe --tags > .version
 
       - name: Create Executable
         uses: sayyid5416/pyinstaller@v1
+        env:
+          APP_VERSION: ${{ env.VERSION }}
         with:
           python_ver: "3.12"
           spec: "main.spec"
