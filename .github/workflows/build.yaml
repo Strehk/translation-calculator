@@ -40,7 +40,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Upload Executables
-      - name: Upload Executables
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
