@@ -39,7 +39,7 @@ jobs:
         shell: bash
         run: |
           if [ "$RUNNER_OS" == "Windows" ]; then
-            cd dist && powershell Compress-Archive -Path "'*'" -DestinationPath "../${{ matrix.artifact_name }}.zip" && cd .. && move ${{ matrix.artifact_name }}.zip dist/
+            cd dist && powershell Compress-Archive -Path "'*'" -DestinationPath "../${{ matrix.artifact_name }}.zip" && cd .. && powershell Move-Item ${{ matrix.artifact_name }}.zip dist/
           else
             cd dist && zip -r ../${{ matrix.artifact_name }}.zip * && cd .. && mv ${{ matrix.artifact_name }}.zip dist/
           fi
