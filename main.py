@@ -9,6 +9,7 @@ from base_values import (
     STANDARD_PAGE,
 )
 import os
+from version import __version__
 
 BASE_VALUE_PATH = "tmp/base_values.pickle"
 
@@ -69,6 +70,11 @@ class TranslationCalculator:
             row=3, column=1, padx=10, pady=10
         )
 
+        # Version label
+        ctk.CTkLabel(self.root, text=f"Version: {__version__}", font=("", 10)).grid(
+            row=4, column=0, columnspan=2
+        )
+
     def calculate_discount(self, price):
         if self.discount_entry.get():
             discount = float(self.discount_entry.get()) / 100
@@ -114,7 +120,9 @@ class TranslationCalculator:
             f"Characters:       {characters} translated characters (including spaces)"
         )
         prints.append(f"Standard line:    {self.base_values.standard_line} characters")
-        prints.append(f"Standard page:    {self.base_values.standard_page} standard lines")
+        prints.append(
+            f"Standard page:    {self.base_values.standard_page} standard lines"
+        )
         prints.append(
             f"Base price:       {self.base_values.base_price_per_line:.2f} € per standard line"
         )
