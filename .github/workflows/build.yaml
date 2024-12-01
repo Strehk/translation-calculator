@@ -39,9 +39,26 @@ jobs:
     needs: pyinstaller-build
     runs-on: ubuntu-latest
     steps:
-      - name: Upload Executables
+      - name: Download Linux artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: translation-calculator-linux
+
+      - name: Download MacOS artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: translation-calculator-macos
+
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: translation-calculator-windows
+
+      - name: Upload to Release
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-            files: |
-                ${{ needs.pyinstaller-build.outputs }}/*
+          files: |
+            translation-calculator-linux
+            translation-calculator-macos
+            translation-calculator-windows
